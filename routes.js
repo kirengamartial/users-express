@@ -22,7 +22,8 @@ router.get('/users/:id', async(req,res)=> {
     const user = await Users.findOne({_id: req.params.id})
     res.send(user)
   } catch (error) {
-    console.log(error)
+    res.status(404)
+    res.send({ error: "User doesn't exist!" })
   }
 })
 
@@ -46,7 +47,8 @@ router.patch('/users/:id', async(req, res ) => {
     
      res.send(user)
     } catch (error) {
-        console.log(error)
+        res.status(404)
+        res.send({ error: "User doesn't exist!" })
     }
 })
 router.delete('/users/:id', async(req, res) => {
@@ -55,7 +57,8 @@ router.delete('/users/:id', async(req, res) => {
     res.status(204).send()
     
     } catch (error) {
-        console.log(error)
+        res.status(404)
+        res.send({ error: "User doesn't exist!" })
     }
    
 })
